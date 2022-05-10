@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const fbuModel = require('../models/ferti_by_use')
+const predModel = require('../models/predictions')
 
-router.get('/getFbuData', (req, res) => {
-    fbuModel.find({}, (err, docs) => {
+router.post('/getChemicalpred', (req, res) => {
+    let reference = req.body.reference
+    // console.log(refe rence)
+
+    predModel.find({reference: reference}, (err, docs) => {
         if(err){
             return res.status(400).json({
                 error: true,
@@ -13,7 +16,7 @@ router.get('/getFbuData', (req, res) => {
         } else {
             return res.status(200).json({
                 error: false,
-                message: 'data found',
+                message: 'Found preds for selected fertilizer!',
                 data: docs
             })
         }

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const fiqSchema = new mongoose.Schema({
+const fbuSchema = new mongoose.Schema({
     index: {
         type: Number,
         required: true
@@ -37,4 +37,4 @@ const fiqSchema = new mongoose.Schema({
     }
 })
 
-module.exports = new mongoose.model('fertilizers_by_imp_quantitie', fiqSchema)
+module.exports = new mongoose.model('fertilizers_by_use', fbuSchema)

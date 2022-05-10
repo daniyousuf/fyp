@@ -8,12 +8,14 @@ env.config();
 
 var cors = require('cors')
 const fiq= require("./routes/fiq")
-const fbu = require("./routes/fbu");
+const fbu= require("./routes/fbu")
 const fiv = require("./routes/fbiv");
 const feq = require('./routes/feq')
 const fbp = require('./routes/fbp')
+const predict = require('./routes/pred')
 const chemical = require('./routes/chemical')
-const df = require('./routes/df')
+const df = require('./routes/df');
+const req = require("express/lib/request");
 
 
 
@@ -51,9 +53,10 @@ db.once("open", function () {
 app.use(bodyParser.json());
 
 app.use("/api",userRoutes);
-app.use('/api/fbu', fbu)
+app.use('/api/prediction', predict)
 app.use('/api/chemicals', chemical)
 app.use('/api/data', df)
+app.use('/api/fbu', fbu)
 app.use('/api/fiv', fiv)
 app.use('/api/fbp', fbp)
 app.use('/api/feq', feq)
